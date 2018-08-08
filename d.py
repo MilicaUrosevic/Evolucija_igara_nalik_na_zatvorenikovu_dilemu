@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu May 10 23:41:01 2018
+Created on Tue Aug  7 16:32:13 2018
 
 @author: Milica
 """
@@ -10,19 +10,20 @@ import numpy
 import math
 from copy import copy, deepcopy
 import matplotlib.pyplot as plt
+import os
+#import cv2
 
 brojJedinki=100
 brojCiklusa=100
 poeni=[]
-koeficijentMutacije=0.05
+koeficijentMutacije=0.01
 koeficijentRekombinacije=0.05
 brojGeneracija=100
-cc=3
-cd=0
-dc=5
-dd=1
+cc=0
+cd=-1
+dc=1
+dd=-1000
 razliciteStrategije=64
-
 def generisiStrategiju():
     strategija=[]
     for x in range(6):
@@ -199,6 +200,7 @@ def genetskiAlgoritam():
     vreme = list(range(0,brojGeneracija))
     matrica= numpy.zeros([brojGeneracija,64], dtype=int)
     for t in range (brojGeneracija):
+        print (t)
         dekadno=[]
         pokreniSukobeUGeneraciji()
         razmnozavanje()
@@ -211,17 +213,36 @@ def genetskiAlgoritam():
             for i in range (0,63):
                 if dekadno[k]==i:
                     matrica[t][i]=matrica[t][i]+1
+        plt.scatter(t, srednjaVrednost(poeni))
+    plt.show()
     for i in range(razliciteStrategije):
         for k in range (brojGeneracija): 
             a=column(matrica,i)
             #reme[k]
         print (a)
         plt.plot(vreme, a)
+        axes = plt.gca()
+        axes.set_xlim([0,brojGeneracija])
+        axes.set_ylim([0,64])
+        plt.ylabel('Broj strategije u generaciji')
+        plt.xlabel('Generacija')
+        putanja=(r'C:\Users\Milica\Desktop\projekat\chiken\grafik')
+        a=putanja + str(i) + '.jpg'
+        ''.join(a)
+        plt.savefig(a, dpi=(600,600)) 
         plt.show()
-    return (matrica)
         
-
-
-
+         
 populacija=kreirajPopulaciju()
 napraviPoene(brojJedinki)
+os.makedirs(r'C:\Users\Milica\Desktop\projekat\chiken')
+plt.ioff()
+
+#def napraviFolder():
+#    for i in range (3):   
+#        a=[]
+#        pth=[]
+#        pth=(r'C:\Users\nina\Desktop\projekat2018\')
+#        a=pth+str(i)
+#        ''.join(a)
+#        os.makedirs(a)
