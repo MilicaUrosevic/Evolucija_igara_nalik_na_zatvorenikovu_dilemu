@@ -19,10 +19,10 @@ poeni=[]
 koeficijentMutacije=0.01
 koeficijentRekombinacije=0.05
 brojGeneracija=100
-cc=0
-cd=-1
-dc=1
-dd=-1000
+cc=10
+cd=0
+dc=0
+dd=5
 razliciteStrategije=64
 def generisiStrategiju():
     strategija=[]
@@ -226,7 +226,7 @@ def genetskiAlgoritam():
         axes.set_ylim([0,64])
         plt.ylabel('Broj strategije u generaciji')
         plt.xlabel('Generacija')
-        putanja=(r'C:\Users\Milica\Desktop\projekat\chiken\grafik')
+        putanja=(r'C:\Users\Milica\Desktop\projekat\partyhome\grafik')
         a=putanja + str(i) + '.jpg'
         ''.join(a)
         plt.savefig(a, dpi=(600,600)) 
@@ -235,7 +235,7 @@ def genetskiAlgoritam():
          
 populacija=kreirajPopulaciju()
 napraviPoene(brojJedinki)
-os.makedirs(r'C:\Users\Milica\Desktop\projekat\chiken')
+os.makedirs(r'C:\Users\Milica\Desktop\projekat\partyhome')
 plt.ioff()
 
 #def napraviFolder():
